@@ -1,0 +1,9 @@
+[submodule "JsonPit"]
+	path = JsonPit
+	url = https://github.com/Burkhardt/JsonPit.git
+[submodule "OsLib"]
+	path = OsLib
+	url = https://github.com/Burkhardt/OsLib.git
+[submodule "RaiUtils"]
+	path = RaiUtils
+	url = https://github.com/Burkhardt/RaiUtils.git
