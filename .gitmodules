@@ -7,3 +7,6 @@
 [submodule "RaiUtils"]
 	path = RaiUtils
 	url = https://github.com/Burkhardt/RaiUtils.git
+[submodule "JsonPit.Tests"]
+	path = JsonPit.Tests
+	url = https://github.com/Burkhardt/JsonPit.Tests.git
