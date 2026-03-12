@@ -1,0 +1,18 @@
+<Solution>
+	<Folder Name="/JsonPit/">
+		<Project Path="JsonPit/JsonPit.Tests/JsonPit.Tests.csproj" />
+	</Folder>
+	<Project Path="JsonPit/JsonPit.csproj" />
+	<Folder Name="/OsLib/">
+		<Project Path="OsLib/OsLib.Tests/OsLib.Tests.csproj" />
+	</Folder>
+	<Project Path="OsLib/OsLib.csproj" />
+	<Folder Name="/RaiImage/">
+		<Project Path="RaiImage/RaiImage.Tests/RaiImage.Tests.csproj" />
+	</Folder>
+	<Project Path="RaiImage/RaiImage.csproj" />
+	<Folder Name="/RaiUtils/">
+		<Project Path="RaiUtils/tests/RaiUtils.Tests/RaiUtils.Tests.csproj" />
+	</Folder>
+	<Project Path="RaiUtils/RaiUtils.csproj" />
+</Solution>

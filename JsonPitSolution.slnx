@@ -1,8 +1,0 @@
-<Solution>
-  <Folder Name="/JsonPit/">
-    <Project Path="JsonPit/JsonPit.Tests/JsonPit.Tests.csproj" />
-  </Folder>
-  <Project Path="JsonPit/JsonPit.csproj" />
-  <Project Path="OsLib/OsLib.csproj" />
-  <Project Path="RaiUtils/RaiUtils.csproj" />
-</Solution>
