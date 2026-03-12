@@ -1,0 +1,126 @@
+@startuml
+title RAIkeep Library Dependencies
+
+top to bottom direction
+
+skinparam TitleFontSize 48
+skinparam TitleFontColor #727375
+skinparam TitleFontName "Papyrus"
+skinparam HeaderFontSize 36
+skinparam DiagramFontSize 24
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam PackageStyle package
+skinparam linetype ortho
+skinparam ArrowColor #4b5563
+skinparam PackageBorderColor #1f2937
+skinparam PackageFontColor #021f5eca
+skinparam PackageFontSize 24
+skinparam PackageFontName "Casual"
+skinparam PackageBackgroundColor #bfd8f078
+skinparam IconPackageColor #e8a8f1
+skinparam ClassBorderColor #004203
+skinparam ClassBackgroundColor #f9fafb
+skinparam NoteBackgroundColor #fff7d6
+skinparam NoteBorderColor #d4b106
+skinparam NoteShadowing true
+skinparam NoteFontName "Casual"
+skinparam NoteFontSize 14
+skinparam ClassBackgroundColor #e8f6ec
+skinparam ClassFontName "Casual"
+skinparam ClassFontSize 13
+skinparam ArrowFontName "Casual"
+skinparam ArrowFontSize 16
+skinparam ArrowFontColor #727375
+skinparam ArrowTextAlignment right
+skinparam ArrowColor #9b2c2c
+skinparam LegendBackgroundColor #f5cfea94
+skinparam LegendFontName "Casual"
+skinparam LegendFontSize 14
+
+package "OsLib" as P_OsLib {
+	class Os
+	class RaiFile
+	class RaiPath
+	class RaiSystem
+	class TextFile
+	class CsvFile
+	class TmpFile
+	class CanonicalFile
+	class CanonicalPath
+	class PathConventionType
+}
+
+package "RaiUtils" as P_RaiUtils {
+	class Email
+	class JsonConversionExtensions
+	class ParameterDictionary
+	class RandomExtensions
+	class SearchExpression
+}
+
+package "JsonPit" as P_JsonPit {
+	class Item
+	class ItemsBase
+	class JsonPitBase
+	class Pit
+	class PitItem
+	class PitItems
+	class MasterFlagFile
+	class ProcessFlagFile
+	class TimestampedValue
+}
+
+package "RaiImage" as P_RaiImage {
+	class CamelCase
+	class ColorInfo
+	class Dye
+	class ImageFile
+	class ImageTreeFile
+	class ImageMagick
+	class ImageUrl
+	class Src
+	class Tmp
+	class TwoSizes
+}
+
+P_OsLib -[hidden]down-> P_RaiUtils
+P_RaiUtils -[hidden]down-> P_JsonPit
+P_JsonPit -[hidden]down-> P_RaiImage
+
+P_JsonPit ..[norank]> P_OsLib : ProjectReference
+P_JsonPit ..[norank]> P_RaiUtils : ProjectReference
+
+P_RaiImage ..[norank]> P_OsLib : ProjectReference
+P_RaiImage ..[norank]> P_RaiUtils : ProjectReference
+
+note left of P_OsLib
+	Foundation library for OS, paths,
+	files, temp files, and cloud-root discovery.
+end note
+
+note bottom of P_RaiUtils
+	Utility library with JSON conversion,
+	randomization, parameter, email,
+	and search helpers.
+end note
+
+note bottom of P_JsonPit
+	JsonPit depends directly on OsLib and RaiUtils
+	for file/cloud conventions and utility helpers.
+end note
+
+note top of P_RaiImage
+	RaiImage references OsLib and RaiUtils when
+	local projects are available, and can fall back
+	to NuGet package references otherwise.
+end note
+
+legend right
+	Solid package contents show representative classes.
+	Dashed arrows show project-level dependencies.
+	Hidden down-links enforce the vertical stack.
+	This view omits test projects for a cleaner package map.
+endlegend
+
+@enduml
