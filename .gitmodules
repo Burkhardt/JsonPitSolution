@@ -9,4 +9,4 @@
 	url = https://github.com/Burkhardt/RaiUtils.git
 [submodule "RaiImage"]
 	path = RaiImage
-	url = /Users/RSB/Projects/GitHub/RaiImage
+	url = https://github.com/Burkhardt/RaiImage.git
