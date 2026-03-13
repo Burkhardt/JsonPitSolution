@@ -18,7 +18,7 @@ skinparam NoteBackgroundColor #fff7d6
 skinparam NoteBorderColor #d4b106
 
 package "OsLib" as P_OsLib {
-	rectangle "Ⓒ Os\nⒸ RaiFile\nⒸ RaiPath\nⒸ RaiSystem\nⒸ TextFile\nⒸ CsvFile\nⒸ TmpFile\nⒸ CanonicalFile\nⒸ CanonicalPath\nⒸ PathConventionType" as M_OsLib
+	rectangle "Ⓒ Os\nⒸ ConfigFile\nⒸ OsConfigFile\nⒸ OsConfigModel\nⒸ CloudModel\nⒸ RaiFile\nⒸ RaiPath\nⒸ RaiSystem\nⒸ TextFile\nⒸ CsvFile\nⒸ TmpFile\nⒸ CanonicalFile\nⒸ CanonicalPath\nⒸ PathConventionType" as M_OsLib
 }
 
 package "OsLib.Tests" <<tests>> as T_OsLib {
@@ -42,7 +42,7 @@ package "JsonPit.Tests" <<tests>> as T_JsonPit {
 }
 
 package "RaiImage" as P_RaiImage {
-	rectangle "Ⓒ CamelCase\nⒸ ColorInfo\nⒸ Dye\nⒸ ImageFile\nⒸ ImageTreeFile\nⒸ ImageMagick\nⒸ ImageUrl\nⒸ Src\nⒸ Tmp\nⒸ TwoSizes" as M_RaiImage
+	rectangle "Ⓒ CamelCase\nⒸ ColorInfo\nⒸ Dye\nⒸ ImageFile\nⒸ ImageTreeFile\nⒸ ImageMagick\nⒸ ImageMagickCommand\nⒸ ImageUrl\nⒸ Src\nⒸ Tmp\nⒸ TwoSizes" as M_RaiImage
 }
 
 package "RaiImage.Tests" <<tests>> as T_RaiImage {
@@ -71,7 +71,8 @@ T_RaiImage ..> P_RaiImage : tests
 
 note bottom of P_OsLib
 	Foundation library for OS, paths,
-	files, temp files, and cloud-root discovery.
+	files, temp files, reusable typed config,
+	and cloud-root discovery.
 end note
 
 note bottom of P_RaiUtils

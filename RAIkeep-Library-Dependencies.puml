@@ -41,6 +41,10 @@ skinparam LegendFontSize 14
 package "OsLib" as P_OsLib {
 	class "Os" as COs [[Os-ClassDiagram.svg{Open Details Diagram for class Os}]]
 	class RaiFile
+	class ConfigFile
+	class OsConfigFile
+	class OsConfigModel
+	class CloudModel
 	class RaiPath
 	class RaiSystem
 	class TextFile
@@ -78,6 +82,7 @@ package "RaiImage" as P_RaiImage {
 	class ImageFile
 	class ImageTreeFile
 	class ImageMagick
+	class ImageMagickCommand
 	class ImageUrl
 	class Src
 	class Tmp
@@ -96,7 +101,8 @@ P_RaiImage ..[norank]> P_RaiUtils : ProjectReference
 
 note left of P_OsLib
 	Foundation library for OS, paths,
-	files, temp files, and cloud-root discovery.
+	files, temp files, reusable typed config,
+	and cloud-root discovery.
 end note
 
 note bottom of P_RaiUtils

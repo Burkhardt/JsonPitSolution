@@ -25,14 +25,14 @@ dotnet test RAIkeep.slnx
 
 Verified result at the time of this note:
 
-- total: 95
+- total: 149
 - failed: 0
-- succeeded: 95
-- skipped: 0
+- succeeded: 144
+- skipped: 5
 
 ## Current aligned package version
 
-The workspace is currently aligned on version `3.2.1` for:
+The workspace is currently aligned on version `3.3.0` for:
 
 - `JsonPit`
 - `OsLib`
