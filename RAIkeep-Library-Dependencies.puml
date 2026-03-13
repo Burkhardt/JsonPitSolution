@@ -1,4 +1,4 @@
-@startuml
+@startuml RAIkeep-Library-Dependencies
 title RAIkeep Library Dependencies
 
 top to bottom direction
@@ -39,7 +39,7 @@ skinparam LegendFontName "Casual"
 skinparam LegendFontSize 14
 
 package "OsLib" as P_OsLib {
-	class Os
+	class "Os" as COs [[Os-ClassDiagram.svg{Open Details Diagram for class Os}]]
 	class RaiFile
 	class RaiPath
 	class RaiSystem
