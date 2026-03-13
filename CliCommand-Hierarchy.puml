@@ -1,0 +1,95 @@
+@startuml CliCommandHierarchy
+skinparam classAttributeIconSize 0
+hide empty members
+
+title CliCommand Hierarchy
+
+package "OsLib" {
+	abstract class CliCommand {
+		+ExecutableName : string
+		+PackageName : string
+		+DisplayName : string
+		+CandidateExecutables : IEnumerable<string>
+		+IsAvailable() : bool
+		+TryResolveExecutable(out executable : string) : bool
+		+ResolveExecutable() : string
+		+Run(arguments : string = "") : RaiSystemResult
+		+RunAsync(arguments : string = "", cancellationToken : CancellationToken = default) : Task<RaiSystemResult>
+		+GetInstallCommand() : string
+		+GetUpdateCommand() : string
+	}
+
+	class CurlCommand
+	class RCloneCommand {
+		+BuildArguments(subcommand : string, args : string = "") : string
+		+RunSubcommand(subcommand : string, args : string = "") : RaiSystemResult
+		+RunSubcommandAsync(subcommand : string, args : string = "", cancellationToken : CancellationToken = default) : Task<RaiSystemResult>
+	}
+	class ZipCommand
+	class SevenZipCommand
+
+	class RaiSystem {
+		+Exec(out msg : string) : int
+		+ExecAsync(cancellationToken : CancellationToken = default) : Task<RaiSystemResult>
+		+Start() : Task<ProcessResults>
+	}
+
+	class RaiSystemResult {
+		+Command : string
+		+Arguments : string
+		+CommandLine : string
+		+Output : string
+		+ExitCode : int
+		+WorkerThreadId : int
+	}
+}
+
+package "RaiImage" {
+	class ImageMagickCommand {
+		+BuildArguments(subcommand : string, args : string = "") : string
+		+RunSubcommand(subcommand : string, args : string = "") : RaiSystemResult
+		+RunSubcommandAsync(subcommand : string, args : string = "", cancellationToken : CancellationToken = default) : Task<RaiSystemResult>
+	}
+
+	class ImageMagick {
+		+Convert(commandline : string) : int
+		+Convert(options : string, from : string, to : string) : int
+		+Mogrify(commandline : string) : int
+		+Composite(commandline : string) : int
+		+Identify(options : string, image : string, result : string) : int
+		+OptiPng(imgFileName : string) : int
+		+JpegTran(imgFileName : string) : int
+	}
+}
+
+CliCommand <|-- CurlCommand
+CliCommand <|-- RCloneCommand
+CliCommand <|-- ZipCommand
+CliCommand <|-- SevenZipCommand
+CliCommand <|-- ImageMagickCommand
+
+CliCommand ..> RaiSystem : creates
+RaiSystem --> RaiSystemResult : returns
+ImageMagick --> ImageMagickCommand : delegates to
+ImageMagickCommand ..> RaiSystemResult
+
+note right of CliCommand
+	Base abstraction for local CLI tools.
+	Executable resolution, availability checks,
+	install/update command hints, and execution
+	are centralized here.
+end note
+
+note right of RaiSystem
+	ExecAsync dispatches external process work
+	on a worker thread so callers do not run the
+	OS process directly on the calling thread.
+end note
+
+note right of ImageMagick
+	Legacy wrapper preserved as the image API.
+	Process execution now flows through
+	ImageMagickCommand -> CliCommand -> RaiSystem.
+end note
+
+@enduml
